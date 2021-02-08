@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='计算几何、C#、算法资料'><title>图形计算</title>
+
+<link rel='canonical' href='https://ffzznjxk.github.io/p/mathcode-data/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='图形计算'>
+<meta property='og:description' content='计算几何、C#、算法资料'>
+<meta property='og:url' content='https://ffzznjxk.github.io/p/mathcode-data/'>
+<meta property='og:site_name' content='记录'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2021-01-06T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-01-06T00:00:00&#43;00:00'/><meta property='og:image' content='https://ffzznjxk.github.io/p/mathcode-data/florian-klauer-nptLmg6jqDo-unsplash.jpg' />
+<meta name="twitter:title" content="图形计算">
+<meta name="twitter:description" content="计算几何、C#、算法资料"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://ffzznjxk.github.io/p/mathcode-data/florian-klauer-nptLmg6jqDo-unsplash.jpg' />
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/title_hu32c2adf635a5dbab3c09c276e953095e_7283_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://ffzznjxk.github.io">记录</a></h1>
+        <h2 class="site-description">个人学习记录博客。</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span></span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://ffzznjxk.github.io" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/mathcode-data/">
+                <img src="/p/mathcode-data/florian-klauer-nptLmg6jqDo-unsplash_hu595aaf3b3dbbb41af5aed8d3958cc9f9_13854_800x0_resize_q75_box.jpg"
+                        srcset="/p/mathcode-data/florian-klauer-nptLmg6jqDo-unsplash_hu595aaf3b3dbbb41af5aed8d3958cc9f9_13854_800x0_resize_q75_box.jpg 800w, /p/mathcode-data/florian-klauer-nptLmg6jqDo-unsplash_hu595aaf3b3dbbb41af5aed8d3958cc9f9_13854_1600x0_resize_q75_box.jpg 1600w"
+                        width="800" 
+                        height="1199" 
+                        loading="lazy"
+                        alt="Featured image of post 图形计算" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/math/" >
+                Math
+            </a>
+        
+            <a href="/categories/%E8%B5%84%E6%96%99/" >
+                资料
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/p/mathcode-data/">图形计算</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        计算几何、C#、算法资料
+    </h3>
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Jan 06, 2021</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="概况">概况</h1>
+<h2 id="图形计算编程主要分两部分内容"><strong>图形计算编程主要分两部分内容</strong></h2>
+<h3 id="1-算法">1. 算法</h3>
+<ul>
+<li>几何计算</li>
+<li>数据运算</li>
+</ul>
+<h3 id="2-编程">2. 编程</h3>
+<ul>
+<li>C# 方法</li>
+<li>AutoCAD 接口</li>
+</ul>
+<p>对于平面设计（建筑行业）主要对象是二维图形，用到的几何计算主要与点、线、框的计算方法；数据运算主要是按照功能需求，对已有的数据准确有效处理。
+因为平面设计主要使用 AutoCAD 软件开发，而 AutoCAD 支持 .net 开发，其中 C# 语言易于上手，相关功能资料齐全，易于软件开发使用。</p>
+<h1 id="学习资料">学习资料</h1>
+<h3 id="1-几何计算">1. 几何计算</h3>
+<ul>
+<li>《几何计算》 何援军 著，该书讲解二维、三维图形基础计算方法，并用 C++ 给出代码示例，是一本很好的几何计算入门书籍。该书没有电子版，可在京东购买。</li>
+</ul>
+<h3 id="2-c">2. C#</h3>
+<ul>
+<li>《C#图解教程》（第4版） 该书介绍了 C# 语言特性，用一些图示方法展示基本原理，适合打好编程语言基础。</li>
+<li>《C#本质论》（第4版） 适合扩展提高。</li>
+<li><a class="link" href="https://www.bilibili.com/video/BV1FJ411W7e5"  target="_blank" rel="noopener"
+    >C#入门到精通</a> 这是一套比较全面的视频资料，不过需要很多时间浏览，适合看书遇到疑问时找视频相关内容了解。</li>
+<li><a class="link" href="https://www.runoob.com/csharp/csharp-tutorial.html"  target="_blank" rel="noopener"
+    >C# 菜鸟教程</a> 简明的语言教程网站，适合临时找内容。</li>
+<li><a class="link" href="https://docs.microsoft.com/zh-cn/dotnet/csharp/tutorials/"  target="_blank" rel="noopener"
+    >C# 官方文档</a> 最全最专业的官方文档，适合深入研究。</li>
+</ul>
+<h3 id="3-算法">3. 算法</h3>
+<ul>
+<li>《算法》（第4版） 一本专业的算法书籍，让计算简单而有效。</li>
+<li><a class="link" href="https://www.bilibili.com/video/BV1u441127b5"  target="_blank" rel="noopener"
+    >算法第四版 - Course课程</a> 这是上面这本书的视频教程。</li>
+<li><a class="link" href="http://www.cyc2018.xyz/%E7%AE%97%E6%B3%95/Leetcode%20%E9%A2%98%E8%A7%A3/Leetcode%20%E9%A2%98%E8%A7%A3%20-%20%E7%9B%AE%E5%BD%95.html#%E5%89%8D%E8%A8%80"  target="_blank" rel="noopener"
+    >Leetcode 题解</a> Leetcode 是一个专门是算法解题网站，这是一个挑选了常用算法的网站，可以学习这些算法用于解决可能的问题。</li>
+</ul>
+<h3 id="4-autocad-二次开发">4. AutoCAD 二次开发</h3>
+<ul>
+<li>《Auto CAD VBA&amp;VB.NET开发》 增洪飞等 著，一本适合入门，基本了解 AutoCAD 功能的各个方面。</li>
+<li>《深入浅出AutoCAD.NET二次开发》 李冠亿 著，根据 AutoCAD.NET 开发接口，介绍各种基础方法。</li>
+<li><a class="link" href="https://www.bilibili.com/video/BV1x4411y79M"  target="_blank" rel="noopener"
+    >CAD二次开发视频C#语言</a> 李小科录制，从编程、对象的角度去实现计算、开发等功能，相对容易上手。</li>
+<li><a class="link" href="http://help.autodesk.com/view/OARX/2018/ENU/?guid=GUID-7E64FDE7-C818-4566-ADF8-C40D50D91E32"  target="_blank" rel="noopener"
+    >AutoCAD 2018 官方文档</a> 官方专业文档，适合深入研究。</li>
+<li><a class="link" href="https://adndevblog.typepad.com/autocad/"  target="_blank" rel="noopener"
+    >AutoCAD 官方博客</a> 适合了解 AutoCAD 最新方法或功能。</li>
+</ul>
+<h1 id="需要准备的软件">需要准备的软件</h1>
+<h3 id="1-visual-studio-communityhttpsvisualstudiomicrosoftcomzh-hansthank-you-downloading-visual-studioskucommunityrel16">1. <a class="link" href="https://visualstudio.microsoft.com/zh-hans/thank-you-downloading-visual-studio/?sku=Community&amp;rel=16"  target="_blank" rel="noopener"
+    >Visual Studio Community</a></h3>
+<ul>
+<li>VS是一个基本完整的开发工具集， Community 版本是一款可供各个开发者、开放源代码项目、学术研究、教育和小型专业团队免费使用的产品。</li>
+</ul>
+<h3 id="2-autocad-2016">2. AutoCAD 2016</h3>
+<ul>
+<li>平面设计主流软件，功能资料齐全，接口相对开放，2016 版相对稳定，基于 .net FrameWork 4.5.2 。</li>
+<li>ObjectARX 2016 AutoCAD 2016 开发包。</li>
+</ul>
+<h2 id="以下为后期需要的软件">以下为后期需要的软件</h2>
+<h3 id="3-githttpsgit-scmcomdownloadwin">3. <a class="link" href="https://git-scm.com/download/win"  target="_blank" rel="noopener"
+    >git</a></h3>
+<ul>
+<li>是一个开源的分布式版本控制系统，可以有效、高速地处理从很小到非常大的项目版本管理，编程人员必不可少</li>
+</ul>
+<h3 id="4-visual-studio-codehttpscodevisualstudiocomdocsdvwin">4. <a class="link" href="https://code.visualstudio.com/docs/?dv=win"  target="_blank" rel="noopener"
+    >visual studio code</a></h3>
+<ul>
+<li>一个运行于 Mac OS X、Windows和 Linux 之上的，针对于编写现代 Web 和云应用的跨平台源代码编辑器。便于文本管理，及其他语言开发工具。</li>
+</ul>
+<p>暂时整理以上相关内容，如有其他后续补上。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title"></h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="has-image">
+    <a href="/p/autocad-ribbon/">
+        
+        
+            <div class="article-image">
+                <img src="/p/autocad-ribbon/_hu595aaf3b3dbbb41af5aed8d3958cc9f9_13854_0ece189ababbd00c7f7605edaf3b0c58.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="autocad-ribbon" 
+                        data-hash="md5-ZQ7E9/kU3iHeoCt/2SKyDg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">CADRibbon</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/p/autocad-data/">
+        
+        
+            <div class="article-image">
+                <img src="/p/autocad-data/_hu595aaf3b3dbbb41af5aed8d3958cc9f9_13854_0ece189ababbd00c7f7605edaf3b0c58.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="autocad-data" 
+                        data-hash="md5-ZQ7E9/kU3iHeoCt/2SKyDg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">CAD资料</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 记录
+    </section>
+    
+    <section class="powerby">
+         <br />
+        
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Math on 记录</title>
+    <link>https://ffzznjxk.github.io/categories/math/</link>
+    <description>Recent content in Math on 记录</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 06 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://ffzznjxk.github.io/categories/math/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>图形计算</title>
+      <link>https://ffzznjxk.github.io/p/mathcode-data/</link>
+      <pubDate>Wed, 06 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://ffzznjxk.github.io/p/mathcode-data/</guid>
+      <description>概况 图形计算编程主要分两部分内容 1. 算法  几何计算 数据运算  2. 编程  C# 方法 AutoCAD 接口  对于平面设计（建筑行业）主要对象是二维图形，用到的几何计算主要与点、线、框的计算方法；数据运算主要是按照功能需求，对已有的数据准确有效处理。 因为平面设计主要使用 AutoCAD 软件开发，而 AutoCAD 支持 .net 开发，其中 C# 语言易于上手，相关功能资料齐全，易于软件开发使用。
+学习资料 1. 几何计算  《几何计算》 何援军 著，该书讲解二维、三维图形基础计算方法，并用 C++ 给出代码示例，是一本很好的几何计算入门书籍。该书没有电子版，可在京东购买。  2. C#  《C#图解教程》（第4版） 该书介绍了 C# 语言特性，用一些图示方法展示基本原理，适合打好编程语言基础。 《C#本质论》（第4版） 适合扩展提高。 C#入门到精通 这是一套比较全面的视频资料，不过需要很多时间浏览，适合看书遇到疑问时找视频相关内容了解。 C# 菜鸟教程 简明的语言教程网站，适合临时找内容。 C# 官方文档 最全最专业的官方文档，适合深入研究。  3. 算法  《算法》（第4版） 一本专业的算法书籍，让计算简单而有效。 算法第四版 - Course课程 这是上面这本书的视频教程。 Leetcode 题解 Leetcode 是一个专门是算法解题网站，这是一个挑选了常用算法的网站，可以学习这些算法用于解决可能的问题。  4. AutoCAD 二次开发  《Auto CAD VBA&amp;amp;VB.</description>
+    </item>
+    
+  </channel>
+</rss>

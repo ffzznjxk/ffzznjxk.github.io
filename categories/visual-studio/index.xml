@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Visual Studio on 记录</title>
+    <link>https://ffzznjxk.github.io/categories/visual-studio/</link>
+    <description>Recent content in Visual Studio on 记录</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 09 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://ffzznjxk.github.io/categories/visual-studio/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>一个新项目</title>
+      <link>https://ffzznjxk.github.io/p/new-project/</link>
+      <pubDate>Sat, 09 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://ffzznjxk.github.io/p/new-project/</guid>
+      <description>一个新项目 Visual Studio 1. 安装  登陆 语言  2. 创建新项目  解决方案 项目 项  3. HelloWorld  using namespace class  4. 工具  代码片段  5. 调试  断点 条件 监视（自动窗口/局部变量）  AutoCAD 1. 注册 2. 命令  line/point/vector/circle copy/move/scale/mirror block/dim/text  ObjectARX 1. 类库(.Net Framework)  4.5.2 AcDbMgd AcMgd  2. HelloWord  Editor Application  3. 调试  设为启动项 启动外部程序 NetLoad  4. Line  F12   /// &amp;lt;summary&amp;gt;  /// 新建直线(newline)  /// &amp;lt;/summary&amp;gt; [CommandMethod(&amp;#34;newline&amp;#34;)] public void NewLine() { //定义直线，起点：100, 100, 0；终点：300, 200, 0  Line line = new Line(new Point3d(100, 100, 0), new Point3d(300, 200, 0)); //打开当前图形数据库  Database db = HostApplicationServices.</description>
+    </item>
+    
+  </channel>
+</rss>

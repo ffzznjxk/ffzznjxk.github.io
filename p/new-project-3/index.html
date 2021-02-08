@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='GetSelect,TransformBy'><title>选择集合与几何变换</title>
+
+<link rel='canonical' href='https://ffzznjxk.github.io/p/new-project-3/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='选择集合与几何变换'>
+<meta property='og:description' content='GetSelect,TransformBy'>
+<meta property='og:url' content='https://ffzznjxk.github.io/p/new-project-3/'>
+<meta property='og:site_name' content='记录'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2021-02-08T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-02-08T00:00:00&#43;00:00'/><meta property='og:image' content='https://ffzznjxk.github.io/p/new-project-3/florian-klauer-nptLmg6jqDo-unsplash.jpg' />
+<meta name="twitter:title" content="选择集合与几何变换">
+<meta name="twitter:description" content="GetSelect,TransformBy"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://ffzznjxk.github.io/p/new-project-3/florian-klauer-nptLmg6jqDo-unsplash.jpg' />
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/title_hu32c2adf635a5dbab3c09c276e953095e_7283_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://ffzznjxk.github.io">记录</a></h1>
+        <h2 class="site-description">个人学习记录博客。</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span></span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://ffzznjxk.github.io" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/new-project-3/">
+                <img src="/p/new-project-3/florian-klauer-nptLmg6jqDo-unsplash_hu595aaf3b3dbbb41af5aed8d3958cc9f9_13854_800x0_resize_q75_box.jpg"
+                        srcset="/p/new-project-3/florian-klauer-nptLmg6jqDo-unsplash_hu595aaf3b3dbbb41af5aed8d3958cc9f9_13854_800x0_resize_q75_box.jpg 800w, /p/new-project-3/florian-klauer-nptLmg6jqDo-unsplash_hu595aaf3b3dbbb41af5aed8d3958cc9f9_13854_1600x0_resize_q75_box.jpg 1600w"
+                        width="800" 
+                        height="1199" 
+                        loading="lazy"
+                        alt="Featured image of post 选择集合与几何变换" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/c#/" >
+                C#
+            </a>
+        
+            <a href="/categories/autocad/" style="background-color: #2a9d8f; color: #fff;">
+                资料
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/p/new-project-3/">选择集合与几何变换</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        GetSelect,TransformBy
+    </h3>
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Feb 08, 2021</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="选择集">选择集</h1>
+<h2 id="选择集-1">选择集</h2>
+<ul>
+<li>
+<p>获取选择</p>
+<p>Editor.GetSelection()</p>
+</li>
+<li>
+<p>选择的内容</p>
+</li>
+</ul>
+<p>SelectionSet = PromptSelectionResult.Value
+ObjectId[] = SelectionSet.GetObjectIds()</p>
+<ul>
+<li>
+<p>类型DxfName</p>
+<p>ObjectId.ObjectClass.DxfName</p>
+</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-csharp" data-lang="csharp">        <span class="c1">/// &lt;summary&gt;
+</span><span class="c1"></span>        <span class="c1">/// 按DxfName分类对象
+</span><span class="c1"></span>        <span class="c1">/// &lt;/summary&gt;
+</span><span class="c1"></span><span class="na">        [CommandMethod(&#34;SED&#34;, CommandFlags.UsePickSet)]</span>
+        <span class="k">public</span> <span class="k">void</span> <span class="n">SelectEntityDxf</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">Editor</span> <span class="n">ed</span> <span class="p">=</span> <span class="n">AcadApp</span><span class="p">.</span><span class="n">DocumentManager</span><span class="p">.</span><span class="n">MdiActiveDocument</span><span class="p">.</span><span class="n">Editor</span><span class="p">;</span>
+            <span class="c1">////命令之前选中
+</span><span class="c1"></span>            <span class="c1">//var psrAleady = ed.SelectImplied();
+</span><span class="c1"></span>            <span class="c1">//选择集
+</span><span class="c1"></span>            <span class="kt">var</span> <span class="n">pso</span> <span class="p">=</span> <span class="k">new</span> <span class="n">PromptSelectionOptions</span><span class="p">();</span>
+            <span class="n">pso</span><span class="p">.</span><span class="n">MessageForAdding</span> <span class="p">=</span> <span class="s">&#34;选择对象\n&#34;</span><span class="p">;</span>
+            <span class="kt">var</span> <span class="n">psr</span> <span class="p">=</span> <span class="n">ed</span><span class="p">.</span><span class="n">GetSelection</span><span class="p">(</span><span class="n">pso</span><span class="p">);</span>
+            <span class="c1">////全部选中
+</span><span class="c1"></span>            <span class="c1">//var psrA = ed.SelectAll();
+</span><span class="c1"></span>            <span class="c1">//选择集
+</span><span class="c1"></span>            <span class="c1">//PromptSelectionResult psrPolygon, psrCw, psrW;
+</span><span class="c1"></span>            <span class="c1">////选择多线段
+</span><span class="c1"></span>            <span class="c1">//var per = ed.GetEntity(new PromptEntityOptions(&#34;选择一条多线段&#34;));
+</span><span class="c1"></span>            <span class="c1">//if (per.Status == PromptStatus.OK)
+</span><span class="c1"></span>            <span class="c1">//{
+</span><span class="c1"></span>            <span class="c1">//    //转换多线段
+</span><span class="c1"></span>            <span class="c1">//    var pl = per.ObjectId.GetObject(OpenMode.ForRead) as Polyline;
+</span><span class="c1"></span>            <span class="c1">//    if (pl != null)
+</span><span class="c1"></span>            <span class="c1">//    {
+</span><span class="c1"></span>            <span class="c1">//        //顶点集合
+</span><span class="c1"></span>            <span class="c1">//        var pts = new Point3dCollection();
+</span><span class="c1"></span>            <span class="c1">//        for (int i = 0; i &lt; pl.NumberOfVertices; i++)
+</span><span class="c1"></span>            <span class="c1">//        {
+</span><span class="c1"></span>            <span class="c1">//            pts.Add(pl.GetPoint3dAt(i));
+</span><span class="c1"></span>            <span class="c1">//        }
+</span><span class="c1"></span>            <span class="c1">//        //区域选择(叉选)
+</span><span class="c1"></span>            <span class="c1">//        psrPolygon = ed.SelectCrossingPolygon(pts);
+</span><span class="c1"></span>            <span class="c1">//    }
+</span><span class="c1"></span>            <span class="c1">//}
+</span><span class="c1"></span>            <span class="c1">//if (ed.GetTwoPoints(out Point3d ptStart, out Point3d ptEnd))
+</span><span class="c1"></span>            <span class="c1">//{
+</span><span class="c1"></span>            <span class="c1">//    //叉选
+</span><span class="c1"></span>            <span class="c1">//    psrCw = ed.SelectCrossingWindow(ptStart, ptEnd);
+</span><span class="c1"></span>            <span class="c1">//    //窗选
+</span><span class="c1"></span>            <span class="c1">//    psrW = ed.SelectWindow(ptStart, ptEnd);
+</span><span class="c1"></span>            <span class="c1">//}
+</span><span class="c1"></span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">psr</span><span class="p">.</span><span class="n">Status</span> <span class="p">==</span> <span class="n">PromptStatus</span><span class="p">.</span><span class="n">OK</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="c1">////设置选中内容
+</span><span class="c1"></span>                <span class="c1">//ed.SetImpliedSelection(psrA.Value);
+</span><span class="c1"></span>                <span class="c1">////清空选中
+</span><span class="c1"></span>                <span class="c1">//ed.SetImpliedSelection(new ObjectId[0]);
+</span><span class="c1"></span>                <span class="c1">//选中对象Id数组
+</span><span class="c1"></span>                <span class="kt">var</span> <span class="n">ids</span> <span class="p">=</span> <span class="n">psr</span><span class="p">.</span><span class="n">Value</span><span class="p">.</span><span class="n">GetObjectIds</span><span class="p">();</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">ids</span><span class="p">.</span><span class="n">Length</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="c1">//按DxfName分组
+</span><span class="c1"></span>                    <span class="kt">var</span> <span class="n">gIds</span> <span class="p">=</span> <span class="n">ids</span><span class="p">.</span><span class="n">GroupBy</span><span class="p">(</span><span class="n">d</span> <span class="p">=&gt;</span> <span class="n">d</span><span class="p">.</span><span class="n">ObjectClass</span><span class="p">.</span><span class="n">DxfName</span><span class="p">);</span>
+                    <span class="c1">//提示信息
+</span><span class="c1"></span>                    <span class="kt">string</span> <span class="n">info</span> <span class="p">=</span> <span class="kt">string</span><span class="p">.</span><span class="n">Empty</span><span class="p">;</span>
+                    <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">id</span> <span class="k">in</span> <span class="n">gIds</span><span class="p">)</span>
+                    <span class="p">{</span>
+                        <span class="n">info</span> <span class="p">+=</span> <span class="s">$&#34;\n选中 {id.Key} 类型 {id.Count()} 个；&#34;</span><span class="p">;</span>
+                    <span class="p">}</span>
+                    <span class="n">AcadApp</span><span class="p">.</span><span class="n">ShowAlertDialog</span><span class="p">(</span><span class="n">info</span><span class="p">);</span>
+                    <span class="c1">////
+</span><span class="c1"></span>                    <span class="c1">//var infos = gIds.Select(d =&gt; $&#34;\n选中 {d.Key} 类型 {d.Count()} 个；&#34;).ToArray();
+</span><span class="c1"></span>                    <span class="c1">//AcadApp.ShowAlertDialog(string.Join(&#34;\n&#34;, infos));
+</span><span class="c1"></span>                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+</code></pre></div><h2 id="条件选择">条件选择</h2>
+<ul>
+<li>已选择对象(CommandFlags.UsePickSet)</li>
+</ul>
+<p>Editor.SelectImplied()</p>
+<ul>
+<li>全部选择</li>
+</ul>
+<p>Editor.SelectAll();</p>
+<ul>
+<li>多边形选择</li>
+</ul>
+<p>Editor.SelectCrossingPolygon(Point3dCollection polygon)</p>
+<ul>
+<li>叉选</li>
+</ul>
+<p>SelectCrossingWindow(Point3d pt1, Point3d pt2)</p>
+<ul>
+<li>窗选</li>
+</ul>
+<p>SelectWindow(Point3d pt1, Point3d pt2)</p>
+<ul>
+<li>设置选择内容</li>
+</ul>
+<p>SetImpliedSelection(SelectionSet)</p>
+<h2 id="删除对象">删除对象</h2>
+<ul>
+<li>实体删除(可写状态)</li>
+</ul>
+<p>Entity = (Entity)id.GetObject(OpenMode.ForWrite);
+Entity.Erase();</p>
+<div class="highlight"><pre class="chroma"><code class="language-csharp" data-lang="csharp">        <span class="c1">/// &lt;summary&gt;
+</span><span class="c1"></span>        <span class="c1">/// 按DxfName分类对象
+</span><span class="c1"></span>        <span class="c1">/// &lt;/summary&gt;
+</span><span class="c1"></span><span class="na">        [CommandMethod(&#34;DE&#34;, CommandFlags.UsePickSet)]</span>
+        <span class="k">public</span> <span class="k">void</span> <span class="n">DeleteEntity</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">Editor</span> <span class="n">ed</span> <span class="p">=</span> <span class="n">AcadApp</span><span class="p">.</span><span class="n">DocumentManager</span><span class="p">.</span><span class="n">MdiActiveDocument</span><span class="p">.</span><span class="n">Editor</span><span class="p">;</span>
+            <span class="c1">//命令之前选中
+</span><span class="c1"></span>            <span class="kt">var</span> <span class="n">psrAleady</span> <span class="p">=</span> <span class="n">ed</span><span class="p">.</span><span class="n">SelectImplied</span><span class="p">();</span>
+            <span class="c1">//选择状态
+</span><span class="c1"></span>            <span class="k">if</span> <span class="p">(</span><span class="n">psrAleady</span><span class="p">.</span><span class="n">Status</span> <span class="p">==</span> <span class="n">PromptStatus</span><span class="p">.</span><span class="n">OK</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="c1">//选中对象Id数组
+</span><span class="c1"></span>                <span class="kt">var</span> <span class="n">ids</span> <span class="p">=</span> <span class="n">psrAleady</span><span class="p">.</span><span class="n">Value</span><span class="p">.</span><span class="n">GetObjectIds</span><span class="p">();</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">ids</span><span class="p">.</span><span class="n">Length</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span>
+                <span class="p">{</span>
+
+                    <span class="n">Database</span> <span class="n">db</span> <span class="p">=</span> <span class="n">HostApplicationServices</span><span class="p">.</span><span class="n">WorkingDatabase</span><span class="p">;</span>
+                    <span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">tr</span> <span class="p">=</span> <span class="n">db</span><span class="p">.</span><span class="n">TransactionManager</span><span class="p">.</span><span class="n">StartTransaction</span><span class="p">())</span>
+                    <span class="p">{</span>
+                        <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">id</span> <span class="k">in</span> <span class="n">ids</span><span class="p">)</span>
+                        <span class="p">{</span>
+                            <span class="k">try</span>
+                            <span class="p">{</span>
+                                <span class="c1">//转换为实体对象
+</span><span class="c1"></span>                                <span class="kt">var</span> <span class="n">ent</span> <span class="p">=</span> <span class="p">(</span><span class="n">Entity</span><span class="p">)</span><span class="n">id</span><span class="p">.</span><span class="n">GetObject</span><span class="p">(</span><span class="n">OpenMode</span><span class="p">.</span><span class="n">ForWrite</span><span class="p">);</span>
+                                <span class="c1">//删除 
+</span><span class="c1"></span>                                <span class="n">ent</span><span class="p">.</span><span class="n">Erase</span><span class="p">();</span>
+                            <span class="p">}</span>
+                            <span class="k">catch</span> <span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">Exception</span> <span class="n">ex</span><span class="p">)</span>
+                            <span class="p">{</span>
+                                <span class="n">AcadApp</span><span class="p">.</span><span class="n">ShowAlertDialog</span><span class="p">(</span><span class="s">$&#34;删除失败,原因 {ex.Message}&#34;</span><span class="p">);</span>
+                            <span class="p">}</span>
+                            <span class="k">finally</span>
+                            <span class="p">{</span>
+
+                            <span class="p">}</span>
+                        <span class="p">}</span>
+                        <span class="n">tr</span><span class="p">.</span><span class="n">Commit</span><span class="p">();</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+</code></pre></div><h1 id="几何变换">几何变换</h1>
+<h2 id="矩阵">矩阵</h2>
+<ul>
+<li>移动</li>
+</ul>
+<p>Matrix3d.Displacement(Point3d.GetVectorTo(Point3d))</p>
+<ul>
+<li>复制</li>
+</ul>
+<p>Database.DeepCloneObjects(ObjectIdCollection identifiers, ObjectId id, IdMapping mapping, bool deferTranslation);</p>
+<ul>
+<li>旋转</li>
+</ul>
+<p>Matrix3d Rotation(double angle, Vector3d axis, Point3d center);</p>
+<ul>
+<li>镜像</li>
+</ul>
+<p>Matrix3d Mirroring(Line3d line(Point3d, Point3d));</p>
+<ul>
+<li>缩放</li>
+</ul>
+<p>Matrix3d Scaling(double scaleAll, Point3d center);</p>
+<h2 id="变换">变换</h2>
+<p>Entity.TransformBy(Matrix3d);</p>
+<div class="highlight"><pre class="chroma"><code class="language-csharp" data-lang="csharp">        <span class="c1">/// &lt;summary&gt;
+</span><span class="c1"></span>        <span class="c1">/// 移动对象
+</span><span class="c1"></span>        <span class="c1">/// &lt;/summary&gt;
+</span><span class="c1"></span><span class="na">        [CommandMethod(&#34;ME&#34;)]</span>
+        <span class="k">public</span> <span class="k">void</span> <span class="n">MoveEntity</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">Editor</span> <span class="n">ed</span> <span class="p">=</span> <span class="n">AcadApp</span><span class="p">.</span><span class="n">DocumentManager</span><span class="p">.</span><span class="n">MdiActiveDocument</span><span class="p">.</span><span class="n">Editor</span><span class="p">;</span>
+            <span class="kt">var</span> <span class="n">ids</span> <span class="p">=</span> <span class="n">ed</span><span class="p">.</span><span class="n">GetSelectIds</span><span class="p">(</span><span class="s">&#34;选择对象\n&#34;</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">ids</span><span class="p">.</span><span class="n">Length</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="c1">//获取输入的两点
+</span><span class="c1"></span>                <span class="kt">var</span> <span class="n">result</span> <span class="p">=</span> <span class="n">ed</span><span class="p">.</span><span class="n">GetTwoPoints</span><span class="p">(</span><span class="k">out</span> <span class="n">Point3d</span> <span class="n">ptStart</span><span class="p">,</span> <span class="k">out</span> <span class="n">Point3d</span> <span class="n">ptEnd</span><span class="p">);</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="c1">//平移向量
+</span><span class="c1"></span>                    <span class="kt">var</span> <span class="n">vector</span> <span class="p">=</span> <span class="n">ptEnd</span> <span class="p">-</span> <span class="n">ptStart</span><span class="p">;</span>
+                    <span class="c1">//矩阵,平移
+</span><span class="c1"></span>                    <span class="kt">var</span> <span class="n">mt</span> <span class="p">=</span> <span class="n">Matrix3d</span><span class="p">.</span><span class="n">Displacement</span><span class="p">(</span><span class="n">vector</span><span class="p">);</span>
+
+                    <span class="n">Database</span> <span class="n">db</span> <span class="p">=</span> <span class="n">HostApplicationServices</span><span class="p">.</span><span class="n">WorkingDatabase</span><span class="p">;</span>
+                    <span class="c1">//开启事务处理
+</span><span class="c1"></span>                    <span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">tr</span> <span class="p">=</span> <span class="n">db</span><span class="p">.</span><span class="n">TransactionManager</span><span class="p">.</span><span class="n">StartTransaction</span><span class="p">())</span>
+                    <span class="p">{</span>
+                        <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">id</span> <span class="k">in</span> <span class="n">ids</span><span class="p">)</span>
+                        <span class="p">{</span>
+                            <span class="c1">//通过Id获取实体
+</span><span class="c1"></span>                            <span class="kt">var</span> <span class="n">ent</span> <span class="p">=</span> <span class="p">(</span><span class="n">Entity</span><span class="p">)</span><span class="n">id</span><span class="p">.</span><span class="n">GetObject</span><span class="p">(</span><span class="n">OpenMode</span><span class="p">.</span><span class="n">ForWrite</span><span class="p">);</span>
+                            <span class="c1">//实体变换
+</span><span class="c1"></span>                            <span class="n">ent</span><span class="p">.</span><span class="n">TransformBy</span><span class="p">(</span><span class="n">mt</span><span class="p">);</span>
+                            <span class="c1">//降为只读
+</span><span class="c1"></span>                            <span class="n">ent</span><span class="p">.</span><span class="n">DowngradeOpen</span><span class="p">();</span>
+                        <span class="p">}</span>
+                        <span class="n">tr</span><span class="p">.</span><span class="n">Commit</span><span class="p">();</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="c1">/// &lt;summary&gt;
+</span><span class="c1"></span>        <span class="c1">/// 复制对象
+</span><span class="c1"></span>        <span class="c1">/// &lt;/summary&gt;
+</span><span class="c1"></span><span class="na">        [CommandMethod(&#34;CE&#34;)]</span>
+        <span class="k">public</span> <span class="k">void</span> <span class="n">CopyEntity</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">Editor</span> <span class="n">ed</span> <span class="p">=</span> <span class="n">AcadApp</span><span class="p">.</span><span class="n">DocumentManager</span><span class="p">.</span><span class="n">MdiActiveDocument</span><span class="p">.</span><span class="n">Editor</span><span class="p">;</span>
+            <span class="kt">var</span> <span class="n">ids</span> <span class="p">=</span> <span class="n">ed</span><span class="p">.</span><span class="n">GetSelectIds</span><span class="p">(</span><span class="s">&#34;选择对象\n&#34;</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">ids</span><span class="p">.</span><span class="n">Length</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="c1">//获取两点
+</span><span class="c1"></span>                <span class="kt">var</span> <span class="n">result</span> <span class="p">=</span> <span class="n">ed</span><span class="p">.</span><span class="n">GetTwoPoints</span><span class="p">(</span><span class="k">out</span> <span class="n">Point3d</span> <span class="n">ptStart</span><span class="p">,</span> <span class="k">out</span> <span class="n">Point3d</span> <span class="n">ptEnd</span><span class="p">);</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">Database</span> <span class="n">db</span> <span class="p">=</span> <span class="n">HostApplicationServices</span><span class="p">.</span><span class="n">WorkingDatabase</span><span class="p">;</span>
+                    <span class="c1">//
+</span><span class="c1"></span>                    <span class="kt">var</span> <span class="n">map</span> <span class="p">=</span> <span class="k">new</span> <span class="n">IdMapping</span><span class="p">();</span>
+                    <span class="n">ObjectIdCollection</span> <span class="n">srcIds</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ObjectIdCollection</span><span class="p">(</span><span class="n">ids</span><span class="p">);</span>
+                    <span class="c1">//复制
+</span><span class="c1"></span>                    <span class="n">db</span><span class="p">.</span><span class="n">DeepCloneObjects</span><span class="p">(</span><span class="n">srcIds</span><span class="p">,</span> <span class="n">db</span><span class="p">.</span><span class="n">CurrentSpaceId</span><span class="p">,</span> <span class="n">map</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
+                    <span class="c1">//平移
+</span><span class="c1"></span>                    <span class="kt">var</span> <span class="n">vector</span> <span class="p">=</span> <span class="n">ptEnd</span><span class="p">.</span><span class="n">GetVectorTo</span><span class="p">(</span><span class="n">ptStart</span><span class="p">);</span>
+                    <span class="kt">var</span> <span class="n">mt</span> <span class="p">=</span> <span class="n">Matrix3d</span><span class="p">.</span><span class="n">Displacement</span><span class="p">(</span><span class="n">vector</span><span class="p">);</span>
+                    <span class="c1">//源对象与复制对象字典
+</span><span class="c1"></span>                    <span class="n">Dictionary</span><span class="p">&lt;</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ObjectId</span><span class="p">&gt;</span> <span class="n">dictId</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="n">ObjectId</span><span class="p">,</span> <span class="n">ObjectId</span><span class="p">&gt;();</span>
+                    <span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">tr</span> <span class="p">=</span> <span class="n">db</span><span class="p">.</span><span class="n">TransactionManager</span><span class="p">.</span><span class="n">StartTransaction</span><span class="p">())</span>
+                    <span class="p">{</span>
+                        <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">id</span> <span class="k">in</span> <span class="n">ids</span><span class="p">)</span>
+                        <span class="p">{</span>
+                            <span class="kt">var</span> <span class="n">idpair</span> <span class="p">=</span> <span class="n">map</span><span class="p">[</span><span class="n">id</span><span class="p">];</span>
+                            <span class="n">id</span><span class="p">.</span><span class="n">EntityTrans</span><span class="p">(</span><span class="n">mt</span><span class="p">);</span>
+                            <span class="n">dictId</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">idpair</span><span class="p">.</span><span class="n">Key</span><span class="p">,</span> <span class="n">idpair</span><span class="p">.</span><span class="n">Value</span><span class="p">);</span>
+                        <span class="p">}</span>
+                        <span class="n">tr</span><span class="p">.</span><span class="n">Commit</span><span class="p">();</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="c1">/// &lt;summary&gt;
+</span><span class="c1"></span>        <span class="c1">/// 旋转对象
+</span><span class="c1"></span>        <span class="c1">/// &lt;/summary&gt;
+</span><span class="c1"></span><span class="na">        [CommandMethod(&#34;ROE&#34;)]</span>
+        <span class="k">public</span> <span class="k">void</span> <span class="n">RotateEntity</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">Editor</span> <span class="n">ed</span> <span class="p">=</span> <span class="n">AcadApp</span><span class="p">.</span><span class="n">DocumentManager</span><span class="p">.</span><span class="n">MdiActiveDocument</span><span class="p">.</span><span class="n">Editor</span><span class="p">;</span>
+            <span class="kt">var</span> <span class="n">ids</span> <span class="p">=</span> <span class="n">ed</span><span class="p">.</span><span class="n">GetSelectIds</span><span class="p">(</span><span class="s">&#34;选择对象\n&#34;</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">ids</span><span class="p">.</span><span class="n">Length</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="c1">//获取旋转基点
+</span><span class="c1"></span>                <span class="kt">var</span> <span class="n">ppr</span> <span class="p">=</span> <span class="n">ed</span><span class="p">.</span><span class="n">GetPoint</span><span class="p">(</span><span class="k">new</span> <span class="n">PromptPointOptions</span><span class="p">(</span><span class="s">&#34;\n指定旋转中心点&#34;</span><span class="p">));</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">ppr</span><span class="p">.</span><span class="n">Status</span> <span class="p">==</span> <span class="n">PromptStatus</span><span class="p">.</span><span class="n">OK</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="c1">//旋转基点
+</span><span class="c1"></span>                    <span class="kt">var</span> <span class="n">ptBase</span> <span class="p">=</span> <span class="n">ppr</span><span class="p">.</span><span class="n">Value</span><span class="p">;</span>
+                    <span class="c1">//获取旋转角度
+</span><span class="c1"></span>                    <span class="kt">var</span> <span class="n">pao</span> <span class="p">=</span> <span class="k">new</span> <span class="n">PromptAngleOptions</span><span class="p">(</span><span class="s">&#34;\n指定旋转角度&#34;</span><span class="p">)</span>
+                    <span class="p">{</span>
+                        <span class="c1">//设定旋转基点
+</span><span class="c1"></span>                        <span class="n">BasePoint</span> <span class="p">=</span> <span class="n">ptBase</span><span class="p">,</span>
+                        <span class="n">UseBasePoint</span> <span class="p">=</span> <span class="k">true</span>
+                    <span class="p">};</span>
+                    <span class="kt">var</span> <span class="n">par</span> <span class="p">=</span> <span class="n">ed</span><span class="p">.</span><span class="n">GetAngle</span><span class="p">(</span><span class="n">pao</span><span class="p">);</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">par</span><span class="p">.</span><span class="n">Status</span> <span class="p">==</span> <span class="n">PromptStatus</span><span class="p">.</span><span class="n">OK</span><span class="p">)</span>
+                    <span class="p">{</span>
+                        <span class="c1">//旋转角度
+</span><span class="c1"></span>                        <span class="kt">var</span> <span class="n">angle</span> <span class="p">=</span> <span class="n">par</span><span class="p">.</span><span class="n">Value</span><span class="p">;</span>
+                        <span class="c1">//矩阵,旋转
+</span><span class="c1"></span>                        <span class="kt">var</span> <span class="n">mt</span> <span class="p">=</span> <span class="n">Matrix3d</span><span class="p">.</span><span class="n">Rotation</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="n">Vector3d</span><span class="p">.</span><span class="n">ZAxis</span><span class="p">,</span> <span class="n">ptBase</span><span class="p">);</span>
+
+                        <span class="n">Database</span> <span class="n">db</span> <span class="p">=</span> <span class="n">HostApplicationServices</span><span class="p">.</span><span class="n">WorkingDatabase</span><span class="p">;</span>
+
+                        <span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">tr</span> <span class="p">=</span> <span class="n">db</span><span class="p">.</span><span class="n">TransactionManager</span><span class="p">.</span><span class="n">StartTransaction</span><span class="p">())</span>
+                        <span class="p">{</span>
+                            <span class="c1">//旋转对象
+</span><span class="c1"></span>                            <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">id</span> <span class="k">in</span> <span class="n">ids</span><span class="p">)</span>
+                            <span class="p">{</span>
+                                <span class="n">id</span><span class="p">.</span><span class="n">EntityTrans</span><span class="p">(</span><span class="n">mt</span><span class="p">);</span>
+                            <span class="p">}</span>
+                            <span class="n">tr</span><span class="p">.</span><span class="n">Commit</span><span class="p">();</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="c1">/// &lt;summary&gt;
+</span><span class="c1"></span>        <span class="c1">/// 镜像对象
+</span><span class="c1"></span>        <span class="c1">/// &lt;/summary&gt;
+</span><span class="c1"></span><span class="na">        [CommandMethod(&#34;MIE&#34;)]</span>
+        <span class="k">public</span> <span class="k">void</span> <span class="n">MirrorEntity</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">Editor</span> <span class="n">ed</span> <span class="p">=</span> <span class="n">AcadApp</span><span class="p">.</span><span class="n">DocumentManager</span><span class="p">.</span><span class="n">MdiActiveDocument</span><span class="p">.</span><span class="n">Editor</span><span class="p">;</span>
+
+            <span class="kt">var</span> <span class="n">ids</span> <span class="p">=</span> <span class="n">ed</span><span class="p">.</span><span class="n">GetSelectIds</span><span class="p">(</span><span class="s">&#34;选择对象\n&#34;</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">ids</span><span class="p">.</span><span class="n">Length</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="kt">var</span> <span class="n">result</span> <span class="p">=</span> <span class="n">ed</span><span class="p">.</span><span class="n">GetTwoPoints</span><span class="p">(</span><span class="k">out</span> <span class="n">Point3d</span> <span class="n">ptStart</span><span class="p">,</span> <span class="k">out</span> <span class="n">Point3d</span> <span class="n">ptEnd</span><span class="p">);</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="c1">//镜像线
+</span><span class="c1"></span>                    <span class="kt">var</span> <span class="n">miLine</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Line3d</span><span class="p">(</span><span class="n">ptStart</span><span class="p">,</span> <span class="n">ptEnd</span><span class="p">);</span>
+                    <span class="c1">//矩阵,镜像
+</span><span class="c1"></span>                    <span class="kt">var</span> <span class="n">mt</span> <span class="p">=</span> <span class="n">Matrix3d</span><span class="p">.</span><span class="n">Mirroring</span><span class="p">(</span><span class="n">miLine</span><span class="p">);</span>
+                    <span class="c1">//提示关键字
+</span><span class="c1"></span>                    <span class="kt">var</span> <span class="n">pko</span> <span class="p">=</span> <span class="k">new</span> <span class="n">PromptKeywordOptions</span><span class="p">(</span><span class="s">&#34;\n是否删除源对象&#34;</span><span class="p">);</span>
+                    <span class="n">pko</span><span class="p">.</span><span class="n">Keywords</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&#34;是&#34;</span><span class="p">,</span> <span class="s">&#34;Y&#34;</span><span class="p">,</span> <span class="s">&#34;删除源对象(Y)&#34;</span><span class="p">);</span>
+                    <span class="n">pko</span><span class="p">.</span><span class="n">Keywords</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&#34;否&#34;</span><span class="p">,</span> <span class="s">&#34;N&#34;</span><span class="p">,</span> <span class="s">&#34;保留源对象(N)&#34;</span><span class="p">);</span>
+                    <span class="n">pko</span><span class="p">.</span><span class="n">Keywords</span><span class="p">.</span><span class="n">Default</span> <span class="p">=</span> <span class="s">&#34;否&#34;</span><span class="p">;</span>
+                    <span class="n">pko</span><span class="p">.</span><span class="n">AllowNone</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+                    <span class="c1">//获取关键字
+</span><span class="c1"></span>                    <span class="kt">var</span> <span class="n">pkr</span> <span class="p">=</span> <span class="n">ed</span><span class="p">.</span><span class="n">GetKeywords</span><span class="p">(</span><span class="n">pko</span><span class="p">);</span>
+                    <span class="n">Database</span> <span class="n">db</span> <span class="p">=</span> <span class="n">HostApplicationServices</span><span class="p">.</span><span class="n">WorkingDatabase</span><span class="p">;</span>
+                    <span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">tr</span> <span class="p">=</span> <span class="n">db</span><span class="p">.</span><span class="n">TransactionManager</span><span class="p">.</span><span class="n">StartTransaction</span><span class="p">())</span>
+                    <span class="p">{</span>
+                        <span class="c1">//仅镜像
+</span><span class="c1"></span>                        <span class="k">if</span> <span class="p">(</span><span class="n">pkr</span><span class="p">.</span><span class="n">Status</span> <span class="p">==</span> <span class="n">PromptStatus</span><span class="p">.</span><span class="n">OK</span> <span class="p">&amp;&amp;</span> <span class="n">pkr</span><span class="p">.</span><span class="n">StringResult</span> <span class="p">==</span> <span class="s">&#34;是&#34;</span><span class="p">)</span>
+                        <span class="p">{</span>
+                            <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">id</span> <span class="k">in</span> <span class="n">ids</span><span class="p">)</span>
+                            <span class="p">{</span>
+                                <span class="n">id</span><span class="p">.</span><span class="n">EntityTrans</span><span class="p">(</span><span class="n">mt</span><span class="p">);</span>
+                            <span class="p">}</span>
+                        <span class="p">}</span>
+                        <span class="c1">//保留源对象镜像
+</span><span class="c1"></span>                        <span class="k">else</span>
+                        <span class="p">{</span>
+                            <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">id</span> <span class="k">in</span> <span class="n">ids</span><span class="p">)</span>
+                            <span class="p">{</span>
+                                <span class="kt">var</span> <span class="n">ent</span> <span class="p">=</span> <span class="p">(</span><span class="n">Entity</span><span class="p">)</span><span class="n">id</span><span class="p">.</span><span class="n">GetObject</span><span class="p">(</span><span class="n">OpenMode</span><span class="p">.</span><span class="n">ForWrite</span><span class="p">);</span>
+                                <span class="kt">var</span> <span class="n">entCopy</span> <span class="p">=</span> <span class="n">ent</span><span class="p">.</span><span class="n">GetTransformedCopy</span><span class="p">(</span><span class="n">mt</span><span class="p">);</span>
+                                <span class="n">ent</span><span class="p">.</span><span class="n">DowngradeOpen</span><span class="p">();</span>
+                                <span class="kt">var</span> <span class="n">mirrorId</span> <span class="p">=</span> <span class="n">db</span><span class="p">.</span><span class="n">AddNewEntity</span><span class="p">(</span><span class="n">entCopy</span><span class="p">);</span>
+                            <span class="p">}</span>
+                        <span class="p">}</span>
+                        <span class="n">tr</span><span class="p">.</span><span class="n">Commit</span><span class="p">();</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="c1">/// &lt;summary&gt;
+</span><span class="c1"></span>        <span class="c1">/// 缩放对象
+</span><span class="c1"></span>        <span class="c1">/// &lt;/summary&gt;
+</span><span class="c1"></span><span class="na">        [CommandMethod(&#34;SCE&#34;)]</span>
+        <span class="k">public</span> <span class="k">void</span> <span class="n">ScaleEntity</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">Editor</span> <span class="n">ed</span> <span class="p">=</span> <span class="n">AcadApp</span><span class="p">.</span><span class="n">DocumentManager</span><span class="p">.</span><span class="n">MdiActiveDocument</span><span class="p">.</span><span class="n">Editor</span><span class="p">;</span>
+            <span class="kt">var</span> <span class="n">ids</span> <span class="p">=</span> <span class="n">ed</span><span class="p">.</span><span class="n">GetSelectIds</span><span class="p">(</span><span class="s">&#34;选择对象\n&#34;</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">ids</span><span class="p">.</span><span class="n">Length</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="c1">//提示缩放点
+</span><span class="c1"></span>                <span class="kt">var</span> <span class="n">ppr</span> <span class="p">=</span> <span class="n">ed</span><span class="p">.</span><span class="n">GetPoint</span><span class="p">(</span><span class="k">new</span> <span class="n">PromptPointOptions</span><span class="p">(</span><span class="s">&#34;\n指定缩放点&#34;</span><span class="p">));</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">ppr</span><span class="p">.</span><span class="n">Status</span> <span class="p">==</span> <span class="n">PromptStatus</span><span class="p">.</span><span class="n">OK</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="c1">//缩放点
+</span><span class="c1"></span>                    <span class="kt">var</span> <span class="n">ptBase</span> <span class="p">=</span> <span class="n">ppr</span><span class="p">.</span><span class="n">Value</span><span class="p">;</span>
+                    <span class="c1">//提示缩放比例
+</span><span class="c1"></span>                    <span class="kt">var</span> <span class="n">pdr</span> <span class="p">=</span> <span class="n">ed</span><span class="p">.</span><span class="n">GetDouble</span><span class="p">(</span><span class="k">new</span> <span class="n">PromptDoubleOptions</span><span class="p">(</span><span class="s">&#34;\n指定缩放比例&#34;</span><span class="p">));</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">pdr</span><span class="p">.</span><span class="n">Status</span> <span class="p">==</span> <span class="n">PromptStatus</span><span class="p">.</span><span class="n">OK</span><span class="p">)</span>
+                    <span class="p">{</span>
+                        <span class="c1">//缩放比例
+</span><span class="c1"></span>                        <span class="kt">var</span> <span class="n">scaleFactor</span> <span class="p">=</span> <span class="n">pdr</span><span class="p">.</span><span class="n">Value</span><span class="p">;</span>
+                        <span class="c1">//矩阵,缩放
+</span><span class="c1"></span>                        <span class="kt">var</span> <span class="n">mt</span> <span class="p">=</span> <span class="n">Matrix3d</span><span class="p">.</span><span class="n">Scaling</span><span class="p">(</span><span class="n">scaleFactor</span><span class="p">,</span> <span class="n">ptBase</span><span class="p">);</span>
+
+                        <span class="n">Database</span> <span class="n">db</span> <span class="p">=</span> <span class="n">HostApplicationServices</span><span class="p">.</span><span class="n">WorkingDatabase</span><span class="p">;</span>
+
+                        <span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">tr</span> <span class="p">=</span> <span class="n">db</span><span class="p">.</span><span class="n">TransactionManager</span><span class="p">.</span><span class="n">StartTransaction</span><span class="p">())</span>
+                        <span class="p">{</span>
+                            <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">id</span> <span class="k">in</span> <span class="n">ids</span><span class="p">)</span>
+                            <span class="p">{</span>
+                                <span class="n">id</span><span class="p">.</span><span class="n">EntityTrans</span><span class="p">(</span><span class="n">mt</span><span class="p">);</span>
+                            <span class="p">}</span>
+                            <span class="n">tr</span><span class="p">.</span><span class="n">Commit</span><span class="p">();</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="c1">/// &lt;summary&gt;
+</span><span class="c1"></span>        <span class="c1">/// 绘制箭头
+</span><span class="c1"></span>        <span class="c1">/// &lt;/summary&gt;
+</span><span class="c1"></span><span class="na">        [CommandMethod(&#34;MAKEARROR&#34;)]</span>
+        <span class="k">public</span> <span class="k">void</span> <span class="n">MakeArrow</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">Editor</span> <span class="n">ed</span> <span class="p">=</span> <span class="n">AcadApp</span><span class="p">.</span><span class="n">DocumentManager</span><span class="p">.</span><span class="n">MdiActiveDocument</span><span class="p">.</span><span class="n">Editor</span><span class="p">;</span>
+            <span class="c1">//指定点
+</span><span class="c1"></span>            <span class="kt">var</span> <span class="n">ppr</span> <span class="p">=</span> <span class="n">ed</span><span class="p">.</span><span class="n">GetPoint</span><span class="p">(</span><span class="k">new</span> <span class="n">PromptPointOptions</span><span class="p">(</span><span class="s">&#34;\n指定箭头原点&#34;</span><span class="p">));</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">ppr</span><span class="p">.</span><span class="n">Status</span> <span class="p">==</span> <span class="n">PromptStatus</span><span class="p">.</span><span class="n">OK</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="c1">//点
+</span><span class="c1"></span>                <span class="kt">var</span> <span class="n">pt</span> <span class="p">=</span> <span class="n">ppr</span><span class="p">.</span><span class="n">Value</span><span class="p">;</span>
+                <span class="kt">var</span> <span class="n">pao</span> <span class="p">=</span> <span class="k">new</span> <span class="n">PromptAngleOptions</span><span class="p">(</span><span class="s">&#34;\n指定角度&#34;</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">BasePoint</span> <span class="p">=</span> <span class="n">pt</span><span class="p">,</span>
+                    <span class="n">UseBasePoint</span> <span class="p">=</span> <span class="k">true</span>
+                <span class="p">};</span>
+                <span class="kt">var</span> <span class="n">par</span> <span class="p">=</span> <span class="n">ed</span><span class="p">.</span><span class="n">GetAngle</span><span class="p">(</span><span class="n">pao</span><span class="p">);</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">par</span><span class="p">.</span><span class="n">Status</span> <span class="p">==</span> <span class="n">PromptStatus</span><span class="p">.</span><span class="n">OK</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="c1">//角度
+</span><span class="c1"></span>                    <span class="kt">var</span> <span class="n">angle</span> <span class="p">=</span> <span class="n">par</span><span class="p">.</span><span class="n">Value</span><span class="p">;</span>
+                    <span class="kt">var</span> <span class="n">pdr</span> <span class="p">=</span> <span class="n">ed</span><span class="p">.</span><span class="n">GetDouble</span><span class="p">(</span><span class="k">new</span> <span class="n">PromptDoubleOptions</span><span class="p">(</span><span class="s">&#34;\n指定比例&#34;</span><span class="p">));</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">pdr</span><span class="p">.</span><span class="n">Status</span> <span class="p">==</span> <span class="n">PromptStatus</span><span class="p">.</span><span class="n">OK</span><span class="p">)</span>
+                    <span class="p">{</span>
+                        <span class="c1">//缩放比例
+</span><span class="c1"></span>                        <span class="kt">var</span> <span class="n">scaleFactor</span> <span class="p">=</span> <span class="n">pdr</span><span class="p">.</span><span class="n">Value</span><span class="p">;</span>
+
+                        <span class="c1">//提示镜像
+</span><span class="c1"></span>                        <span class="kt">var</span> <span class="n">pko</span> <span class="p">=</span> <span class="k">new</span> <span class="n">PromptKeywordOptions</span><span class="p">(</span><span class="s">&#34;\n是否反向&#34;</span><span class="p">);</span>
+                        <span class="n">pko</span><span class="p">.</span><span class="n">Keywords</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&#34;正向&#34;</span><span class="p">,</span> <span class="s">&#34;Y&#34;</span><span class="p">,</span> <span class="s">&#34;正向(Y)&#34;</span><span class="p">);</span>
+                        <span class="n">pko</span><span class="p">.</span><span class="n">Keywords</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&#34;反向&#34;</span><span class="p">,</span> <span class="s">&#34;N&#34;</span><span class="p">,</span> <span class="s">&#34;反向(N)&#34;</span><span class="p">);</span>
+                        <span class="n">pko</span><span class="p">.</span><span class="n">Keywords</span><span class="p">.</span><span class="n">Default</span> <span class="p">=</span> <span class="s">&#34;正向&#34;</span><span class="p">;</span>
+                        <span class="n">pko</span><span class="p">.</span><span class="n">AllowNone</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+                        <span class="kt">var</span> <span class="n">pkr</span> <span class="p">=</span> <span class="n">ed</span><span class="p">.</span><span class="n">GetKeywords</span><span class="p">(</span><span class="n">pko</span><span class="p">);</span>
+
+                        <span class="c1">//箭头
+</span><span class="c1"></span>                        <span class="n">Polyline</span> <span class="n">pl</span> <span class="p">=</span> <span class="n">DrawArrow</span><span class="p">();</span>
+
+                        <span class="kt">var</span> <span class="n">mt</span> <span class="p">=</span> <span class="n">ed</span><span class="p">.</span><span class="n">CurrentUserCoordinateSystem</span><span class="p">;</span>
+                        <span class="c1">//矩阵,平移
+</span><span class="c1"></span>                        <span class="n">mt</span> <span class="p">*=</span> <span class="n">Matrix3d</span><span class="p">.</span><span class="n">Displacement</span><span class="p">(</span><span class="n">pt</span><span class="p">.</span><span class="n">GetAsVector</span><span class="p">());</span>
+                        <span class="c1">//旋转
+</span><span class="c1"></span>                        <span class="n">mt</span> <span class="p">*=</span> <span class="n">Matrix3d</span><span class="p">.</span><span class="n">Rotation</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="n">Vector3d</span><span class="p">.</span><span class="n">ZAxis</span><span class="p">,</span> <span class="n">Point3d</span><span class="p">.</span><span class="n">Origin</span><span class="p">);</span>
+                        <span class="c1">////对称可用旋转 pi 
+</span><span class="c1"></span>                        <span class="c1">//if (pkr.Status == PromptStatus.OK &amp;&amp; pkr.StringResult == &#34;反向&#34;)
+</span><span class="c1"></span>                        <span class="c1">//    mt *= Matrix3d.Rotation(Math.PI, Vector3d.ZAxis, Point3d.Origin);
+</span><span class="c1"></span>                        <span class="c1">//缩放
+</span><span class="c1"></span>                        <span class="n">mt</span> <span class="p">*=</span> <span class="n">Matrix3d</span><span class="p">.</span><span class="n">Scaling</span><span class="p">(</span><span class="n">scaleFactor</span><span class="p">,</span> <span class="n">Point3d</span><span class="p">.</span><span class="n">Origin</span><span class="p">);</span>
+                        <span class="c1">//反向,
+</span><span class="c1"></span>                        <span class="k">if</span> <span class="p">(</span><span class="n">pkr</span><span class="p">.</span><span class="n">Status</span> <span class="p">==</span> <span class="n">PromptStatus</span><span class="p">.</span><span class="n">OK</span> <span class="p">&amp;&amp;</span> <span class="n">pkr</span><span class="p">.</span><span class="n">StringResult</span> <span class="p">==</span> <span class="s">&#34;反向&#34;</span><span class="p">)</span>
+                        <span class="p">{</span>
+                            <span class="c1">//镜像法向量
+</span><span class="c1"></span>                            <span class="n">Vector3d</span> <span class="n">vector</span> <span class="p">=</span> <span class="n">Vector3d</span><span class="p">.</span><span class="n">XAxis</span><span class="p">.</span><span class="n">RotateBy</span><span class="p">(</span><span class="n">Math</span><span class="p">.</span><span class="n">PI</span> <span class="p">/</span> <span class="m">2</span><span class="p">,</span> <span class="n">Vector3d</span><span class="p">.</span><span class="n">ZAxis</span><span class="p">);</span>
+                            <span class="kt">var</span> <span class="n">miLine</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Line3d</span><span class="p">(</span><span class="n">Point3d</span><span class="p">.</span><span class="n">Origin</span><span class="p">,</span> <span class="n">vector</span><span class="p">);</span>
+                            <span class="n">mt</span> <span class="p">*=</span> <span class="n">Matrix3d</span><span class="p">.</span><span class="n">Mirroring</span><span class="p">(</span><span class="n">miLine</span><span class="p">);</span>
+                        <span class="p">}</span>
+                        <span class="c1">//矩阵变换
+</span><span class="c1"></span>                        <span class="n">pl</span><span class="p">.</span><span class="n">TransformBy</span><span class="p">(</span><span class="n">mt</span><span class="p">);</span>
+
+                        <span class="n">Database</span> <span class="n">db</span> <span class="p">=</span> <span class="n">HostApplicationServices</span><span class="p">.</span><span class="n">WorkingDatabase</span><span class="p">;</span>
+                        <span class="c1">//添加对象
+</span><span class="c1"></span>                        <span class="n">db</span><span class="p">.</span><span class="n">AddNewEntity</span><span class="p">(</span><span class="n">pl</span><span class="p">);</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="c1">/// &lt;summary&gt;
+</span><span class="c1"></span>        <span class="c1">/// 箭头图形
+</span><span class="c1"></span>        <span class="c1">/// &lt;/summary&gt;
+</span><span class="c1"></span>        <span class="c1">/// &lt;returns&gt;箭头多线段&lt;/returns&gt;
+</span><span class="c1"></span>        <span class="k">private</span> <span class="k">static</span> <span class="n">Polyline</span> <span class="n">DrawArrow</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">Polyline</span> <span class="n">pl</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Polyline</span><span class="p">();</span>
+            <span class="n">pl</span><span class="p">.</span><span class="n">AddVertexAt</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="k">new</span> <span class="n">Point2d</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">),</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">);</span>
+            <span class="n">pl</span><span class="p">.</span><span class="n">AddVertexAt</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="k">new</span> <span class="n">Point2d</span><span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">);</span>
+            <span class="n">pl</span><span class="p">.</span><span class="n">AddVertexAt</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="k">new</span> <span class="n">Point2d</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="p">-</span><span class="m">1</span><span class="p">),</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">);</span>
+            <span class="n">pl</span><span class="p">.</span><span class="n">Closed</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+            <span class="k">return</span> <span class="n">pl</span><span class="p">;</span>
+        <span class="p">}</span>
+</code></pre></div><h2 id="函数方法">函数方法</h2>
+<div class="highlight"><pre class="chroma"><code class="language-csharp" data-lang="csharp">        <span class="c1">/// &lt;summary&gt;
+</span><span class="c1"></span>        <span class="c1">/// 获取输入的两点
+</span><span class="c1"></span>        <span class="c1">/// &lt;/summary&gt;
+</span><span class="c1"></span>        <span class="c1">/// &lt;param name=&#34;ed&#34;&gt;编辑器&lt;/param&gt;
+</span><span class="c1"></span>        <span class="c1">/// &lt;param name=&#34;ptStart&#34;&gt;起点&lt;/param&gt;
+</span><span class="c1"></span>        <span class="c1">/// &lt;param name=&#34;ptEnd&#34;&gt;终点&lt;/param&gt;
+</span><span class="c1"></span>        <span class="c1">/// &lt;returns&gt;是否完成选择&lt;/returns&gt;
+</span><span class="c1"></span>        <span class="k">public</span> <span class="k">static</span> <span class="kt">bool</span> <span class="n">GetTwoPoints</span><span class="p">(</span><span class="k">this</span> <span class="n">Editor</span> <span class="n">ed</span><span class="p">,</span> <span class="k">out</span> <span class="n">Point3d</span> <span class="n">ptStart</span><span class="p">,</span> <span class="k">out</span> <span class="n">Point3d</span> <span class="n">ptEnd</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">ptStart</span> <span class="p">=</span> <span class="n">Point3d</span><span class="p">.</span><span class="n">Origin</span><span class="p">;</span>
+            <span class="n">ptEnd</span> <span class="p">=</span> <span class="n">Point3d</span><span class="p">.</span><span class="n">Origin</span><span class="p">;</span>
+            <span class="kt">var</span> <span class="n">ppr</span> <span class="p">=</span> <span class="n">ed</span><span class="p">.</span><span class="n">GetPoint</span><span class="p">(</span><span class="k">new</span> <span class="n">PromptPointOptions</span><span class="p">(</span><span class="s">&#34;\n指定起点&#34;</span><span class="p">));</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">ppr</span><span class="p">.</span><span class="n">Status</span> <span class="p">==</span> <span class="n">PromptStatus</span><span class="p">.</span><span class="n">OK</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">ptStart</span> <span class="p">=</span> <span class="n">ppr</span><span class="p">.</span><span class="n">Value</span><span class="p">;</span>
+                <span class="n">ppr</span> <span class="p">=</span> <span class="n">ed</span><span class="p">.</span><span class="n">GetPoint</span><span class="p">(</span><span class="k">new</span> <span class="n">PromptPointOptions</span><span class="p">(</span><span class="s">&#34;\n指定终点&#34;</span><span class="p">));</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">ppr</span><span class="p">.</span><span class="n">Status</span> <span class="p">==</span> <span class="n">PromptStatus</span><span class="p">.</span><span class="n">OK</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">ptEnd</span> <span class="p">=</span> <span class="n">ppr</span><span class="p">.</span><span class="n">Value</span><span class="p">;</span>
+                    <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">/// &lt;summary&gt;
+</span><span class="c1"></span>        <span class="c1">/// 获取选择的对象数组
+</span><span class="c1"></span>        <span class="c1">/// &lt;/summary&gt;
+</span><span class="c1"></span>        <span class="c1">/// &lt;param name=&#34;ed&#34;&gt;编辑器&lt;/param&gt;
+</span><span class="c1"></span>        <span class="c1">/// &lt;param name=&#34;prompt&#34;&gt;提示&lt;/param&gt;
+</span><span class="c1"></span>        <span class="c1">/// &lt;returns&gt;对象Id组&lt;/returns&gt;
+</span><span class="c1"></span>        <span class="k">public</span> <span class="k">static</span> <span class="n">ObjectId</span><span class="p">[]</span> <span class="n">GetSelectIds</span><span class="p">(</span><span class="k">this</span> <span class="n">Editor</span> <span class="n">ed</span><span class="p">,</span> <span class="kt">string</span> <span class="n">prompt</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">ObjectId</span><span class="p">[]</span> <span class="n">ids</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ObjectId</span><span class="p">[</span><span class="m">0</span><span class="p">];</span>
+            <span class="kt">var</span> <span class="n">pso</span> <span class="p">=</span> <span class="k">new</span> <span class="n">PromptSelectionOptions</span><span class="p">();</span>
+            <span class="n">pso</span><span class="p">.</span><span class="n">MessageForAdding</span> <span class="p">=</span> <span class="n">prompt</span><span class="p">;</span>
+            <span class="kt">var</span> <span class="n">psr</span> <span class="p">=</span> <span class="n">ed</span><span class="p">.</span><span class="n">GetSelection</span><span class="p">(</span><span class="n">pso</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">psr</span><span class="p">.</span><span class="n">Status</span> <span class="p">==</span> <span class="n">PromptStatus</span><span class="p">.</span><span class="n">OK</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">ids</span> <span class="p">=</span> <span class="n">psr</span><span class="p">.</span><span class="n">Value</span><span class="p">.</span><span class="n">GetObjectIds</span><span class="p">();</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="n">ids</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">/// &lt;summary&gt;
+</span><span class="c1"></span>        <span class="c1">/// 对象变换
+</span><span class="c1"></span>        <span class="c1">/// &lt;/summary&gt;
+</span><span class="c1"></span>        <span class="c1">/// &lt;param name=&#34;id&#34;&gt;对象Id&lt;/param&gt;
+</span><span class="c1"></span>        <span class="c1">/// &lt;param name=&#34;mt&#34;&gt;矩阵&lt;/param&gt;
+</span><span class="c1"></span>        <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">EntityTrans</span><span class="p">(</span><span class="k">this</span> <span class="n">ObjectId</span> <span class="n">id</span><span class="p">,</span> <span class="n">Matrix3d</span> <span class="n">mt</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">var</span> <span class="n">ent</span> <span class="p">=</span> <span class="p">(</span><span class="n">Entity</span><span class="p">)</span><span class="n">id</span><span class="p">.</span><span class="n">GetObject</span><span class="p">(</span><span class="n">OpenMode</span><span class="p">.</span><span class="n">ForWrite</span><span class="p">);</span>
+            <span class="n">ent</span><span class="p">.</span><span class="n">TransformBy</span><span class="p">(</span><span class="n">mt</span><span class="p">);</span>
+            <span class="n">ent</span><span class="p">.</span><span class="n">DowngradeOpen</span><span class="p">();</span>
+        <span class="p">}</span>
+</code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title"></h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="has-image">
+    <a href="/p/new-project-2/">
+        
+        
+            <div class="article-image">
+                <img src="/p/new-project-2/_hu595aaf3b3dbbb41af5aed8d3958cc9f9_13854_0ece189ababbd00c7f7605edaf3b0c58.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="New-project-2" 
+                        data-hash="md5-ZQ7E9/kU3iHeoCt/2SKyDg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">用户交互与几何图形</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/p/new-project/">
+        
+        
+            <div class="article-image">
+                <img src="/p/new-project/_hu595aaf3b3dbbb41af5aed8d3958cc9f9_13854_0ece189ababbd00c7f7605edaf3b0c58.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="New-project" 
+                        data-hash="md5-ZQ7E9/kU3iHeoCt/2SKyDg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">一个新项目</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/p/autocad-ribbon/">
+        
+        
+            <div class="article-image">
+                <img src="/p/autocad-ribbon/_hu595aaf3b3dbbb41af5aed8d3958cc9f9_13854_0ece189ababbd00c7f7605edaf3b0c58.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="autocad-ribbon" 
+                        data-hash="md5-ZQ7E9/kU3iHeoCt/2SKyDg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">CADRibbon</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/p/autocad-data/">
+        
+        
+            <div class="article-image">
+                <img src="/p/autocad-data/_hu595aaf3b3dbbb41af5aed8d3958cc9f9_13854_0ece189ababbd00c7f7605edaf3b0c58.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="autocad-data" 
+                        data-hash="md5-ZQ7E9/kU3iHeoCt/2SKyDg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">CAD资料</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2021 记录
+    </section>
+    
+    <section class="powerby">
+         <br />
+        
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

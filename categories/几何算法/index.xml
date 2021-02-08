@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>几何算法 on 记录</title>
+    <link>https://ffzznjxk.github.io/categories/%E5%87%A0%E4%BD%95%E7%AE%97%E6%B3%95/</link>
+    <description>Recent content in 几何算法 on 记录</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 06 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://ffzznjxk.github.io/categories/%E5%87%A0%E4%BD%95%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>几何算法问题1</title>
+      <link>https://ffzznjxk.github.io/p/geomath-problem1/</link>
+      <pubDate>Wed, 06 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://ffzznjxk.github.io/p/geomath-problem1/</guid>
+      <description>向量投影问题  在一个二维坐标系中一条线段Line_ab，起终点分别为A(100,100)，B(300,200)，一条线段Line_cd，起终点分别为C(100,200)，D(150,225)。 已知条件 计算Line_cd投影到Line_ab上的线段 ( 如下图所示Line_ef )。 计算投影线段</description>
+    </item>
+    
+  </channel>
+</rss>
