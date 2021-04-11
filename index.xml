@@ -455,7 +455,7 @@ Entity.Erase();&lt;/p&gt;
                         &lt;span class=&#34;c1&#34;&gt;//箭头
 &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;                        &lt;span class=&#34;n&#34;&gt;Polyline&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pl&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;DrawArrow&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
 
-                        &lt;span class=&#34;kt&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;mt&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ed&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;CurrentUserCoordinateSystem&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+                        &lt;span class=&#34;kt&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;mt&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Matrix3d&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
                         &lt;span class=&#34;c1&#34;&gt;//矩阵,平移
 &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;                        &lt;span class=&#34;n&#34;&gt;mt&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;*=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Matrix3d&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Displacement&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;GetAsVector&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;());&lt;/span&gt;
                         &lt;span class=&#34;c1&#34;&gt;//旋转

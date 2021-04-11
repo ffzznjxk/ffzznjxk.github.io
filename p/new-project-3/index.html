@@ -675,7 +675,7 @@ Entity.Erase();</p>
                         <span class="c1">//箭头
 </span><span class="c1"></span>                        <span class="n">Polyline</span> <span class="n">pl</span> <span class="p">=</span> <span class="n">DrawArrow</span><span class="p">();</span>
 
-                        <span class="kt">var</span> <span class="n">mt</span> <span class="p">=</span> <span class="n">ed</span><span class="p">.</span><span class="n">CurrentUserCoordinateSystem</span><span class="p">;</span>
+                        <span class="kt">var</span> <span class="n">mt</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Matrix3d</span><span class="p">();</span>
                         <span class="c1">//矩阵,平移
 </span><span class="c1"></span>                        <span class="n">mt</span> <span class="p">*=</span> <span class="n">Matrix3d</span><span class="p">.</span><span class="n">Displacement</span><span class="p">(</span><span class="n">pt</span><span class="p">.</span><span class="n">GetAsVector</span><span class="p">());</span>
                         <span class="c1">//旋转
